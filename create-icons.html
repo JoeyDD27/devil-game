@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devil Game Icon Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+      background: #2d1b4e;
+      color: white;
+    }
+
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .icon-box {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    canvas {
+      border: 2px solid #ff6b35;
+      display: block;
+      margin: 10px auto;
+    }
+
+    button {
+      background: #ff6b35;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    button:hover {
+      background: #e85a2a;
+    }
+
+    h1 {
+      color: #ff6b35;
+    }
+
+    .instructions {
+      max-width: 600px;
+      margin: 20px auto;
+      text-align: left;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>🎃 Devil Game Icon Generator</h1>
+
+  <div class="instructions">
+    <h3>Instructions:</h3>
+    <ol>
+      <li>The icons will be generated automatically below</li>
+      <li>Click the "Download" button under each icon to save it</li>
+      <li>Save them with the exact names: icon16.png, icon48.png, icon128.png</li>
+      <li>Place all three icons in the "devil game" folder</li>
+      <li>Load the extension in Chrome (see README.md for details)</li>
+    </ol>
+  </div>
+
+  <div class="icon-container">
+    <div class="icon-box">
+      <h3>16x16</h3>
+      <canvas id="icon16" width="16" height="16"></canvas>
+      <button onclick="downloadIcon('icon16', 'icon16.png')">Download icon16.png</button>
+    </div>
+
+    <div class="icon-box">
+      <h3>48x48</h3>
+      <canvas id="icon48" width="48" height="48"></canvas>
+      <button onclick="downloadIcon('icon48', 'icon48.png')">Download icon48.png</button>
+    </div>
+
+    <div class="icon-box">
+      <h3>128x128</h3>
+      <canvas id="icon128" width="128" height="128"></canvas>
+      <button onclick="downloadIcon('icon128', 'icon128.png')">Download icon128.png</button>
+    </div>
+  </div>
+
+  <script>
+    // Draw icon on canvas
+    function drawIcon(canvasId, size) {
+      const canvas = document.getElementById(canvasId);
+      const ctx = canvas.getContext('2d');
+
+      // Background
+      const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size);
+      gradient.addColorStop(0, '#ff6b35');
+      gradient.addColorStop(1, '#d64a1a');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, size, size);
+
+      // Draw devil emoji/symbol
+      ctx.fillStyle = '#ffffff';
+      ctx.font = `bold ${size * 0.6}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('👿', size / 2, size / 2);
+    }
+
+    // Download icon
+    function downloadIcon(canvasId, filename) {
+      const canvas = document.getElementById(canvasId);
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // Generate all icons on page load
+    window.onload = function () {
+      drawIcon('icon16', 16);
+      drawIcon('icon48', 48);
+      drawIcon('icon128', 128);
+    };
+  </script>
+</body>
+
+</html>
