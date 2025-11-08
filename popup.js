@@ -20,8 +20,8 @@ const story = {
 
   brokenWindow: {
     text: "You carefully climb through the broken window, cutting your hand slightly on the glass. You find yourself in what appears to be a child's bedroom, frozen in time. Toys are scattered everywhere, and you hear a music box playing softly. There's a closet door slightly ajar and a door leading to a hallway.",
-    choices: [
-      { text: "Investigate the music box", next: "musicBox" },
+    choices: [ 
+      { text: "ivestigate the music box", next: "musicBox" },
       { text: "Open the closet door", next: "closet" },
       { text: "Exit to the hallway", next: "hallway" }
     ]
